@@ -48,7 +48,7 @@ export function  getImgURL(date){
 
 			       method: 'GET',
 	               headers: myHeaders,
-	               mode: 'no-cors',
+	               mode: 'cors',
 	               cache: 'default' ,
 	               credentials: 'omit'
 	           };
@@ -57,8 +57,10 @@ export function  getImgURL(date){
     
 		fetch(request)
 
-			//.then(data=>data.json())
+			.then(data=>data.json())
 			.then(data=>{
+
+				console.log(data);
 				
 				if(data.photos && data.photos.length){
 					console.log(data.photos[0].img_src);
