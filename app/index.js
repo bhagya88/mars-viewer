@@ -1,3 +1,4 @@
+//import all dependencies
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
@@ -9,12 +10,14 @@ import { Provider } from 'react-redux';
 import  rootReducer from './reducers/rootReducer';
 
 
+// select the element from index.html where react app goes
 const app = document.getElementById('mainHtml');
 
-const store = createStore(rootReducer, //defaultState);
-	composeWithDevTools(applyMiddleware(thunk)));
+// creeate redux store to store state of application
+const store = createStore(rootReducer, 
+	composeWithDevTools(applyMiddleware(thunk))); // thunk is used in async actions
 
-
+// initial render
 ReactDOM.render(
 	<Provider store={store}>
 		<App/>

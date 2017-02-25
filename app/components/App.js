@@ -7,12 +7,14 @@ class App extends Component{
 
 constructor(props) {
     super(props);
+
+    // initial state 
     this.state = {
       date: this.props.date
      
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,31 +25,28 @@ constructor(props) {
       [e.target.name] : e.target.value
     });
 
+    console.log("handleChange", e.target.value);
+
     this.props.setDate(e.target.value);
+    this.props.getImgURL(e.target.value);
+
   }
 
   
-  handleSubmit(e) {
 
-    e.preventDefault();
-
-    console.log(this.state.date);
-
-    this.props.getImgURL(this.state.date);
-
-  }
-
-	
+  
 render(){
 
 var msg='';
 if(this.props.imgFound === 'No'){
   msg= 'Sorry, no images were found for this date';
+}else if(this.props.imgFound === 'Error'){
+  msg= 'Error occured while fetching the image.';
 }
 
 return (
     <div className="container">
-	      <div className="row">
+        <div className="row">
         <div className="col s10 offset-s1">
           <div className="card">
 
@@ -63,11 +62,7 @@ return (
                     <input name="date" type="date" className="validate" value={this.state.date} onChange={this.handleChange} required />
                   </div>
                 </div>
-               
-                 <div className="row center">
-                <button className="btn waves-effect waves-light"  onClick={this.handleSubmit}>Submit           
-                </button>
-                </div>
+           
 
  
             </div>
@@ -80,6 +75,8 @@ return (
 
                   </div>
               </div>
+              <br/>
+              <br/>
             </div>
 
             
@@ -88,9 +85,9 @@ return (
       </div>
       </div>
 
-	)
-		
-	}
+  )
+    
+  }
 
 }
 
@@ -99,6 +96,8 @@ App.propTypes = {
    date : React.PropTypes.string,
    imgURL: React.PropTypes.string,
    imgFound:React.PropTypes.string,
+
+   // props mapped to despatch actions
    getImgURL: React.PropTypes.func,
    setDate: React.PropTypes.func
 
@@ -107,7 +106,7 @@ App.propTypes = {
 function mapStateToProps(store){
 
   return {
-    
+    // data pulled from store
     date: store.data.date,
     imgURL: store.data.imgURL,
     imgFound:store.data.imgFound

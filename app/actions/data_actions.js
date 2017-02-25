@@ -32,16 +32,42 @@ export function  getImgURL(date){
 		const apiKey = 'dZZhyoSLDDVUEkYDD3z0MARLsL4SU7DMh0DlX7cY';
 		const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date='+date+'&api_key='+apiKey;
 
-	fetch(url)
+
+    var myHeaders = new Headers({
+
+    });
+
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Access-Control-Allow-Credentials", "false");
+    myHeaders.append("Access-Control-Allow-Origin", "*");
+    myHeaders.append("Access-Control-Allow-Headers", "*");
+    myHeaders.append("Access-Control-Allow-Methods", "*");
+
+
+	var myInit = { method: 'GET',
+               headers: myHeaders,
+               mode: 'cors',
+               cache: 'default' ,
+               json: true,
+               credentials: 'omit'};
+
+    var request = new Request(url, myInit);
+	fetch(request)
 		.then(res=>res.json())
 		.then(data=>{
-			
-			if(data.photos && data.photos.length){
-				console.log(data.photos[0].img_src);
-				despatch(setImgURL(data.photos[0].img_src));
+
+
+			if(data.error){
+			   despatch(setImgFound('No'));
 			}else{
-				despatch(setImgFound('No'));
-			}
+				if(data.photos && data.photos.length){
+					console.log(data.photos[0].img_src);
+					despatch(setImgURL(data.photos[0].img_src));
+				}
+		   }
+		})
+		.catch(function(error){
+			despatch(setImgFound('Error'));
 		});
 	}
 }

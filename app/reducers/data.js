@@ -1,3 +1,4 @@
+// modify state depending on action
 export default function data(state = {
 	date:'yyyy-mm-dd',
 	imgURL: '',
@@ -8,7 +9,7 @@ export default function data(state = {
 
 		case 'SET_DATE':
 
-	    return {...state, date: action.date}
+	    return {imgURL:'', imageFound:'', date: action.date}
 
 		case 'SET_IMG_URL':
 
@@ -18,7 +19,7 @@ export default function data(state = {
 
 	    return {...state, imgURL:'',imgFound: action.imgFound}
 
-	   
+	   		   
 		default :
 
 		return state;
