@@ -46,7 +46,7 @@ export function  getImgURL(date){
 
 	var myInit = { method: 'GET',
                headers: myHeaders,
-               mode: 'no-cors',
+               mode: 'cors',
                cache: 'default' ,
                json: true,
                credentials: 'omit'};
@@ -55,18 +55,13 @@ export function  getImgURL(date){
 	fetch(request)
 		.then(res=>res.json())
 		.then(data=>{
-
-			if(data.error){
-			   despatch(setImgFound('No'));
+			
+			if(data.photos && data.photos.length){
+				console.log(data.photos[0].img_src);
+				despatch(setImgURL(data.photos[0].img_src));
 			}else{
-				if(data.photos && data.photos.length){
-					console.log(data.photos[0].img_src);
-					despatch(setImgURL(data.photos[0].img_src));
-				}
-		   }
-		})
-		.catch(function(error){
-			despatch(setImgFound('Error'));
+				despatch(setImgFound('No'));
+			}
 		});
 	}
 }
