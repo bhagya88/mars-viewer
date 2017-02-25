@@ -1,12 +1,14 @@
 // get all dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import DatePicker from 'react-datepicker';
 import { setDate, getImgURL } from '../actions/data_actions';
 import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function isValidDate(dt){
-  var dateFormat = 'YYYY-MM-DD';
-  return moment(dt, dateFormat, true ).isValid();
+  
+  return dt.isValid();
 }
 
 class App extends Component{
@@ -16,35 +18,37 @@ constructor(props) {
 
     // initial state 
     this.state = {
-      date: this.props.date
+      date: moment()
      
     }
 
     
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
+
+   }
 
 
-  handleChange(e){
+  handleChange(date){
  
-    this.setState({
-      [e.target.name] : e.target.value
-    });
+    // this.setState({
+    //   [e.target.name] : e.target.value
+    // });
 
-    
-    
-
-    
+    this.setState({ date})
+  
 
   }
+
+  
+
 
    handleSubmit(e){
    console.log("handleSubmit", this.state.date); 
    console.log("date validation", isValidDate(this.state.date));
    if(isValidDate(this.state.date)){
        this.props.setDate(this.state.date);
-       this.props.getImgURL(this.state.date);
+       this.props.getImgURL(this.state.date.format('YYYY-MM-DD'));
     }
    
 
@@ -76,8 +80,14 @@ return (
                 <div className="row center">
                   
                    <div className="col s6 offset-s3">
-                    <input name="date" type="date" className="validate" value={this.state.date} onChange={this.handleChange} required />
+                    {/*<input name="date" type="date" className="validate" value={this.state.date} onChange={this.handleChange} required />*/}
+                    <DatePicker
+                dateFormat="YYYY-MM-DD"
+              selected={this.state.date}
+                onChange={this.handleChange} />
                   </div>
+
+
                 </div>
            
                 <div className="row center">

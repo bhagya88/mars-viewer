@@ -1,6 +1,7 @@
 // modify state depending on action
+import moment from 'moment';
 export default function data(state = {
-	date:'yyyy-mm-dd',
+	date:moment(),
 	imgURL: '',
 	imageFound:''
 }, action = {}){
