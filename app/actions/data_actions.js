@@ -49,11 +49,14 @@ export function  getImgURL(date){
                mode: 'no-cors',
                cache: 'default' ,
                json: true,
-               credentials: 'omit'};
+               credentials: 'omit'
+           };
 
     var request = new Request(url, myInit);
+    
 	fetch(request)
-		.then(res=>res.json())
+
+		.then(data=>data.json())
 		.then(data=>{
 			
 			if(data.photos && data.photos.length){
