@@ -2,6 +2,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setDate, getImgURL } from '../actions/data_actions';
+import moment from 'moment';
+
+function isValidDate(dt){
+  var dateFormat = 'YYYY-MM-DD';
+  return moment(dt, dateFormat, true ).isValid();
+}
 
 class App extends Component{
 
@@ -16,6 +22,7 @@ constructor(props) {
 
     
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
@@ -25,14 +32,24 @@ constructor(props) {
       [e.target.name] : e.target.value
     });
 
-    console.log("handleChange", e.target.value);
+    
+    
 
-    this.props.setDate(e.target.value);
-    this.props.getImgURL(e.target.value);
+    
 
   }
 
-  
+   handleSubmit(e){
+   console.log("handleSubmit", this.state.date); 
+   console.log("date validation", isValidDate(this.state.date));
+   if(isValidDate(this.state.date)){
+       this.props.setDate(this.state.date);
+       this.props.getImgURL(this.state.date);
+    }
+   
+
+  }
+
 
   
 render(){
@@ -40,7 +57,7 @@ render(){
 var msg='';
 if(this.props.imgFound === 'No'){
   msg= 'Sorry, no images were found for this date';
-}else if(this.props.imgFound === 'Error'){
+}else if(isValidDate(this.state.date) && this.props.imgFound === 'Error'){
   msg= 'Error occured while fetching the image.';
 }
 
@@ -63,6 +80,12 @@ return (
                   </div>
                 </div>
            
+                <div className="row center">
+                  
+                   <div className="col s6 offset-s3">
+                     <button className="btn waves-effect waves-light" onClick={this.handleSubmit} >Submit</button>
+                  </div>
+                </div>
 
  
             </div>

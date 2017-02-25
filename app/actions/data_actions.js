@@ -46,7 +46,7 @@ export function  getImgURL(date){
 
 	var myInit = { method: 'GET',
                headers: myHeaders,
-               mode: 'cors',
+               mode: 'no-cors',
                cache: 'default' ,
                json: true,
                credentials: 'omit'};
@@ -55,7 +55,6 @@ export function  getImgURL(date){
 	fetch(request)
 		.then(res=>res.json())
 		.then(data=>{
-
 
 			if(data.error){
 			   despatch(setImgFound('No'));
