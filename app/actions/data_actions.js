@@ -46,7 +46,7 @@ export function  getImgURL(date){
 
 	var myInit = { method: 'GET',
                headers: myHeaders,
-               mode: 'cors',
+               mode: 'no-cors',
                cache: 'default' ,
                json: true,
                credentials: 'omit'};
