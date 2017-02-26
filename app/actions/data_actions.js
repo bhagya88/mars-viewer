@@ -1,4 +1,10 @@
-import 'whatwg-fetch';
+import 'whatwg-fetch'; //polyfill for fetch support in safari 
+import Promise from 'promise-polyfill'; // for promise support in older browsers
+
+if (!window.Promise) {
+  window.Promise = Promise;
+}
+
 export function  setDate(date){
 
 	return{
