@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 export function  setDate(date){
 
 	return{
