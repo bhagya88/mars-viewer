@@ -126,7 +126,7 @@ return (
 
 App.propTypes = {
 
-   date : React.PropTypes.string,
+   date : React.PropTypes.object,
    imgURL: React.PropTypes.string,
    imgFound:React.PropTypes.string,
 
