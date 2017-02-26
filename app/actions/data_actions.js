@@ -1,9 +1,9 @@
+// import the dependencies
 import 'whatwg-fetch'; //polyfill for fetch support in safari 
 import Promise from 'promise-polyfill'; // for promise support in older browsers
 
-if (!window.Promise) {
-  window.Promise = Promise;
-}
+
+// export all action functions
 
 export function  setDate(date){
 
@@ -30,6 +30,8 @@ export function  setImgFound(imgFound){
 	}
 }
 
+
+// thunck async action function for fetching data from api
 export function  getImgURL(date){
 
 	console.log("getImgURL",date);
@@ -76,6 +78,6 @@ export function  getImgURL(date){
 					despatch(setImgFound('No'));
 				}
 			});
-		}
+	}
 }
 

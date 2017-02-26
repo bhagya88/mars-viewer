@@ -6,6 +6,7 @@ import { setDate, getImgURL } from '../actions/data_actions';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
+// check if the date is a valid date
 function isValidDate(dt){
   
   return dt.isValid();
@@ -31,19 +32,12 @@ constructor(props) {
 
   handleChange(date){
  
-    // this.setState({
-    //   [e.target.name] : e.target.value
-    // });
-
-    this.setState({ date})
-  
-
+      this.setState({ date})
   }
 
   
-
-
    handleSubmit(e){
+
    console.log("handleSubmit", this.state.date); 
    console.log("date validation", isValidDate(this.state.date));
    if(isValidDate(this.state.date)){
@@ -82,9 +76,9 @@ return (
                    <div className="col s6 offset-s3">
                     {/*<input name="date" type="date" className="validate" value={this.state.date} onChange={this.handleChange} required />*/}
                     <DatePicker
-                dateFormat="YYYY-MM-DD"
-              selected={this.state.date}
-                onChange={this.handleChange} />
+                        dateFormat="YYYY-MM-DD"
+                        selected={this.state.date}
+                        onChange={this.handleChange} />
                   </div>
 
 
@@ -116,14 +110,14 @@ return (
           </div>
         </div>
       </div>
-      </div>
-
-  )
+    </div>
+  );
     
   }
 
 }
 
+// define all prop types
 App.propTypes = {
 
    date : React.PropTypes.object,
@@ -136,6 +130,8 @@ App.propTypes = {
 
 }
 
+
+// function that pulls data from store
 function mapStateToProps(store){
 
   return {
@@ -147,5 +143,5 @@ function mapStateToProps(store){
   } 
 }
 
-
+// wraps App component with Connect component
 export default connect(mapStateToProps,{ setDate, getImgURL })(App);

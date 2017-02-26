@@ -1,7 +1,9 @@
-// modify state depending on action
+// import all dependencies
 import moment from 'moment';
-export default function data(state = {
-	date:moment(),
+
+// modify state depending on action
+export default function data(state = {  // initial value
+	date:moment(), 
 	imgURL: '',
 	imageFound:''
 }, action = {}){
@@ -10,16 +12,15 @@ export default function data(state = {
 
 		case 'SET_DATE':
 
-	    return {imgURL:'', imageFound:'', date: action.date}
+	    	return {imgURL:'', imageFound:'', date: action.date}
 
 		case 'SET_IMG_URL':
 
-	    return {...state, imgURL: action.imgURL}
+	    	return {...state, imgURL: action.imgURL}
 
 	    case 'SET_IMG_FOUND':
 
-	    return {...state, imgURL:'',imgFound: action.imgFound}
-
+	    	return {...state, imgURL:'',imgFound: action.imgFound}
 	   		   
 		default :
 
