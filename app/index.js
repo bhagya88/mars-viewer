@@ -13,7 +13,7 @@ import  rootReducer from './reducers/rootReducer';
 // select the element from index.html where react app goes
 const app = document.getElementById('mainHtml');
 
-// creeate redux store to store state of application
+// create redux store to store state of application
 const store = createStore(rootReducer, 
 	composeWithDevTools(applyMiddleware(thunk))); 
 
