@@ -77,6 +77,10 @@ export function  getImgURL(date){
 				}else{
 					despatch(setImgFound('No'));
 				}
+			})
+			.catch(function(error){
+				console.log(error);
+				despatch(setImgFound('Error'));
 			});
 	}
 }

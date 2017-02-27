@@ -12,6 +12,7 @@ function isValidDate(dt){
   return dt.isValid();
 }
 
+
 class App extends Component{
 
 constructor(props) {
@@ -56,7 +57,7 @@ var msg='';
 if(this.props.imgFound === 'No'){
   msg= 'Sorry, no images were found for this date';
 }else if(isValidDate(this.state.date) && this.props.imgFound === 'Error'){
-  msg= 'Error occured while fetching the image.';
+  msg= 'Error occured while fetching the image. Please check console  details.';
 }
 
 return (
