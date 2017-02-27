@@ -1,7 +1,18 @@
-# Bookclub_React
+# Mars Viewer
 
-This is a SPA (Single Page App) to help manage the logistics of running a neighborhood bookclub.
+### Overview
 
-Main functionality includes a member profile, news posts, description of events, and a book list of chosen books the club has read.
+This is React/ Redux front end app that fetches images from NASA API for a given date.
 
-It is designed to be socially interactive allowing members rights to create and read posts.
+### Demo
+[Click to view Demo](https://mars-viewer.herokuapp.com/)
+
+### Technologies used
+
+* React, Redux, React-Redux, Thunk
+* React-datepicker component
+* NASA API
+* Materialize CSS
+* React Developer Tools, Redux Developer Tools
+
+##### Developed by Bhagya
