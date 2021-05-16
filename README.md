@@ -12,7 +12,7 @@ This is a React/ Redux front end app that fetches images from NASA API for a giv
 * React, Redux, React-Redux, Thunk
 * React-datepicker component
 * NASA API
-* Materialize CSS
+* Material UI, CSS
 * React Developer Tools, Redux Developer Tools
 
 ##### Developed by Bhagya
